@@ -1,4 +1,4 @@
-package com.example.bottomnavigationtest;
+package com.example.sensortest2;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -8,7 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.bottomnavigationtest.databinding.ActivityMainBinding;
+import com.example.sensortest2.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 

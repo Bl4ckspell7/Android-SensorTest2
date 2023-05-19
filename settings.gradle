@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "BottomNavigationTest"
+rootProject.name = "SensorTest2"
 include ':app'

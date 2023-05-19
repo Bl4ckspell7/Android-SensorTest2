@@ -1,4 +1,4 @@
-package com.example.bottomnavigationtest;
+package com.example.sensortest2;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

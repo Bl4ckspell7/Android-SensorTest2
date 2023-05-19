@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">Bottom Nav Test</string>
-    <string name="tab1_name">Home</string>
-    <string name="tab2_name">Profile</string>
-    <string name="tab3_name">Settings</string>
-    <string name="frag1">frag1</string>
-    <string name="frag2">frag2</string>
-    <string name="frag3">frag3</string>
+    <string name="app_name">Sensor Test 2</string>
+    <string name="tab1_name">Compass</string>
+    <string name="tab2_name">Level</string>
+    <string name="tab3_name">Brightness</string>
+    <string name="tv">textview</string>
+
 </resources>
