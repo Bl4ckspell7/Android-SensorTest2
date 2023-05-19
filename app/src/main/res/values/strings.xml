@@ -3,6 +3,11 @@
     <string name="tab1_name">Compass</string>
     <string name="tab2_name">Level</string>
     <string name="tab3_name">Brightness</string>
-    <string name="tv">textview</string>
+    <string name="textViewDefault">TextView</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="proximity_description">Proximity sensor triggered:</string>
+    <string name="brightness_description">Current brightness:</string>
+    <string name="no">no</string>
+    <string name="yes">yes</string>
 
 </resources>
