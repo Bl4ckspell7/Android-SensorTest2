@@ -1,4 +1,4 @@
-package com.example.bottomnavigationtest;
+package com.example.sensortest2;
 
 import org.junit.Test;
 
