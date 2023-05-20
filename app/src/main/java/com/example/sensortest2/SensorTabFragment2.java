@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SensorTab2Fragment extends SensorTabFragment {
-    private static final int VERTICAL_VALUE_INDEX = 0;
-    private static final int HORIZONTAL_VALUE_INDEX = 1;
+public class SensorTabFragment2 extends SensorTabFragment {
+    private static final int VERTICAL_VALUE_INDEX = 1;
+    private static final int HORIZONTAL_VALUE_INDEX = 2;
     private TextView textViewHorizontalValue;
     private TextView textViewVerticalValue;
     private ImageView imageViewHorizontalDot;
     private ImageView imageViewVerticalDot;
 
-    public SensorTab2Fragment() {
+    public SensorTabFragment2() {
         // Required empty public constructor
     }
 
@@ -61,11 +61,7 @@ public class SensorTab2Fragment extends SensorTabFragment {
     }
 
     private void setTextViewValue(TextView textView, int value) {
-        textView.setText(addDegreeSymbolToString(String.valueOf(value)));
-    }
-
-    private String addDegreeSymbolToString(String string) {
-        return string.concat(getResources().getString(R.string.degree_symbol));
+        textView.setText(super.addDegreeSymbolToString(String.valueOf(value)));
     }
 
     private int reduceValueRange(int valueToBeReduced, int oldLimit, int newLimit) {

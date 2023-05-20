@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".SensorTab2Fragment">
+    tools:context=".SensorTabFragment2">
 
     <TextView
         android:id="@+id/tab2_textview_vertical_value"

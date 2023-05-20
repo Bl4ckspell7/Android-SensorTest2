@@ -29,21 +29,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Vibrator vibrator;
     private final static int VIBRATION_DURATION = 120;
     private static final int ONEEIGHTY = 180;
-    private static final int delay = 50;
-    private long lastUpdate;
     private final float[] accelerometerReading = new float[3];
     private final float[] magnetometerReading = new float[3];
     private final float[] rotationMatrix = new float[9];
     private final float[] orientationAngles = new float[3];
-    public float val0;
     private double proximitySensorValue;
     private float lightSensorValue;
-    private final int[] sensorData = new int[4];
+    private final int[] sensorData = new int[5];
 
     FragmentManager fragmentManager;
-    private final Fragment tab1Fragment = new SensorTab1Fragment();
-    private final Fragment tab2Fragment = new SensorTab2Fragment();
-    private final Fragment tab3Fragment = new SensorTab3Fragment();
+    private final Fragment tab1Fragment = new SensorTabFragment1();
+    private final Fragment tab2Fragment = new SensorTabFragment2();
+    private final Fragment tab3Fragment = new SensorTabFragment3();
 
 
     @Override
@@ -140,11 +137,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void setValues() {
         //Convert radians to degrees
-        val0 = (float) (-orientationAngles[0] * ONEEIGHTY / Math.PI);
-        sensorData[0] = (int) (orientationAngles[1] * ONEEIGHTY / Math.PI); // vertical value
-        sensorData[1] = (int) (orientationAngles[2] * ONEEIGHTY / Math.PI); // horizontal value
-        sensorData[2] = (int) proximitySensorValue;
-        sensorData[3] = (int) lightSensorValue;
+        sensorData[0] = (int) (-orientationAngles[0] * ONEEIGHTY / Math.PI); // orientation value
+        sensorData[1] = (int) (orientationAngles[1] * ONEEIGHTY / Math.PI); // vertical value
+        sensorData[2] = (int) (orientationAngles[2] * ONEEIGHTY / Math.PI); // horizontal value
+        sensorData[3] = (int) proximitySensorValue;
+        sensorData[4] = (int) lightSensorValue;
     }
 
 
@@ -152,22 +149,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         SensorTabFragment sensorTabFragment = (SensorTabFragment) fragmentManager.findFragmentById(R.id.frameLayout);
         assert sensorTabFragment != null;
         sensorTabFragment.setData(sensorData);
-//        if (fragment instanceof Tab2Fragment) {
-//            if (enoughDelay()) {
-//                ((Tab2Fragment) fragment).setTab2Data(val1, val2);
-//            }
-//        } else if (fragment instanceof Tab3Fragment) {
-//            ((Tab3Fragment) fragment).setData((int) proximitySensorValue, (int) lightSensorValue);
-//        }
     }
 
-    private boolean enoughDelay() {
-        long curTime = System.currentTimeMillis();
-        long diffTime = (curTime - lastUpdate);
-        if (diffTime > delay) {
-            lastUpdate = curTime;
-            return true;
-        }
-        return false;
-    }
 }
