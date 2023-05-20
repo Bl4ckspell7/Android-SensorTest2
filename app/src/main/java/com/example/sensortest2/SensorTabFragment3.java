@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SensorTab3Fragment extends SensorTabFragment {
+public class SensorTabFragment3 extends SensorTabFragment {
+    private static final int PROXIMITY_VALUE_INDEX = 3;
+    private static final int BRIGHTNESS_VALUE_INDEX = 4;
     Button buttonVibrate;
     TextView textViewProximityValue;
     TextView textViewBrightnessValue;
 
-    public SensorTab3Fragment() {
+    public SensorTabFragment3() {
         // Required empty public constructor
     }
 
@@ -29,14 +31,14 @@ public class SensorTab3Fragment extends SensorTabFragment {
         buttonVibrate = view.findViewById(R.id.button_vibrate);
         textViewProximityValue = view.findViewById(R.id.tab3_textview_proximity_value);
         textViewBrightnessValue = view.findViewById(R.id.tab3_textview_brightness_value);
-        buttonVibrate.setOnClickListener(v -> ((MainActivity) getActivity()).vibrate());
+        buttonVibrate.setOnClickListener(v -> ((MainActivity) requireActivity()).vibrate());
         return view;
     }
 
     @Override
     public void setData(int[] sensorData) {
-        int proximityValue = sensorData[2];
-        int brightnessValue = sensorData[3];
+        int proximityValue = sensorData[PROXIMITY_VALUE_INDEX];
+        int brightnessValue = sensorData[BRIGHTNESS_VALUE_INDEX];
 
         if (proximityValue == 0) {
             textViewProximityValue.setText(getResources().getString(R.string.yes));

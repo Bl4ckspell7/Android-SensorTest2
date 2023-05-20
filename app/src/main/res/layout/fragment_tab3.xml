@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".SensorTab3Fragment">
+    tools:context=".SensorTabFragment3">
 
     <TextView
         android:id="@+id/tab3_textview_proximity_description"

@@ -17,5 +17,6 @@
     <string name="circle_background_content_description">background grid for the circle dot</string>
     <string name="vertical_background_content_description">background grid for the vertical dot</string>
     <string name="horizontal_background_content_description">background grid for the horizontal dot</string>
+    <string name="compass_content_description">image of a compass</string>
 
 </resources>
