@@ -5,9 +5,17 @@
     <string name="tab3_name">Brightness</string>
     <string name="textViewDefault">TextView</string>
     <string name="vibrate">Vibrate</string>
-    <string name="proximity_description">Proximity sensor triggered:</string>
-    <string name="brightness_description">Current brightness:</string>
+    <string name="proximity_text">Proximity sensor triggered:</string>
+    <string name="brightness_text">Current brightness:</string>
     <string name="no">no</string>
     <string name="yes">yes</string>
+    <string name="degree_symbol">°</string>
+
+    <string name="horizontal_dot_content_description">moving image of a dot that indicates the horizontal tilt</string>
+    <string name="vertical_dot_content_description">moving image of a dot that indicates the vertical tilt</string>
+    <string name="circle_dot_content_description">moving image of a dot that shows the horizontal and vertical tilt combined</string>
+    <string name="circle_background_content_description">background grid for the circle dot</string>
+    <string name="vertical_background_content_description">background grid for the vertical dot</string>
+    <string name="horizontal_background_content_description">background grid for the horizontal dot</string>
 
 </resources>

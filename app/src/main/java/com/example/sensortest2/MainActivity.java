@@ -26,32 +26,41 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Sensor lightSensor;
     ActivityMainBinding binding;
     VibratorManager vibratorManager;
-    static Vibrator vibrator;
-    final static int VIBRATION_DURATION = 120;
+    Vibrator vibrator;
+    private final static int VIBRATION_DURATION = 120;
+    private static final int ONEEIGHTY = 180;
+    private static final int delay = 50;
+    private long lastUpdate;
     private final float[] accelerometerReading = new float[3];
     private final float[] magnetometerReading = new float[3];
     private final float[] rotationMatrix = new float[9];
     private final float[] orientationAngles = new float[3];
-    public static float val0;
-    public static int val1, val2;
-    public static double proximitySensorValue;
-    public static float lightSensorValue;
-    private FragmentRefreshListener fragmentRefreshListener;
+    public float val0;
+    private double proximitySensorValue;
+    private float lightSensorValue;
+    private final int[] sensorData = new int[4];
+
+    FragmentManager fragmentManager;
+    private final Fragment tab1Fragment = new SensorTab1Fragment();
+    private final Fragment tab2Fragment = new SensorTab2Fragment();
+    private final Fragment tab3Fragment = new SensorTab3Fragment();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new Tab1Fragment());
+        fragmentManager = getSupportFragmentManager();
+        replaceFragment(tab1Fragment);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.tab1) {
-                replaceFragment(new Tab1Fragment());
+                replaceFragment(tab1Fragment);
             } else if (itemId == R.id.tab2) {
-                replaceFragment(new Tab2Fragment());
+                replaceFragment(tab2Fragment);
             } else if (itemId == R.id.tab3) {
-                replaceFragment(new Tab3Fragment());
+                replaceFragment(tab3Fragment);
             }
             return true;
         });
@@ -59,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout, fragment);
         fragmentTransaction.commit();
@@ -68,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private void attachSensors() {
         vibratorManager = (VibratorManager) getSystemService(Context.VIBRATOR_MANAGER_SERVICE);
         vibrator = vibratorManager.getDefaultVibrator();
-
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         magneticFieldSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -77,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-    public static void vibrate() {
+    public void vibrate() {
         vibrator.vibrate(VibrationEffect.createOneShot(VIBRATION_DURATION, VibrationEffect.DEFAULT_AMPLITUDE));
     }
 
@@ -97,8 +104,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             lightSensorValue = sensorEvent.values[0];
         }
         updateOrientationAngles();
-        set_val();
-        refreshFragment();
+        setValues();
+        updateFragmentData();
     }
 
     @Override
@@ -131,27 +138,36 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         SensorManager.getOrientation(rotationMatrix, orientationAngles);
     }
 
-    private void set_val() {
-        val0 = (float) (-orientationAngles[0] * 180 / 3.1415926535897); //Bogen in Gradmaß
-        val1 = (int) (orientationAngles[1] * 180 / 3.1415926535897);
-        val2 = (int) (orientationAngles[2] * 180 / 3.1415926535897);
+    private void setValues() {
+        //Convert radians to degrees
+        val0 = (float) (-orientationAngles[0] * ONEEIGHTY / Math.PI);
+        sensorData[0] = (int) (orientationAngles[1] * ONEEIGHTY / Math.PI); // vertical value
+        sensorData[1] = (int) (orientationAngles[2] * ONEEIGHTY / Math.PI); // horizontal value
+        sensorData[2] = (int) proximitySensorValue;
+        sensorData[3] = (int) lightSensorValue;
     }
 
-    public interface FragmentRefreshListener {
-        void refresh();
+
+    private void updateFragmentData() {
+        SensorTabFragment sensorTabFragment = (SensorTabFragment) fragmentManager.findFragmentById(R.id.frameLayout);
+        assert sensorTabFragment != null;
+        sensorTabFragment.setData(sensorData);
+//        if (fragment instanceof Tab2Fragment) {
+//            if (enoughDelay()) {
+//                ((Tab2Fragment) fragment).setTab2Data(val1, val2);
+//            }
+//        } else if (fragment instanceof Tab3Fragment) {
+//            ((Tab3Fragment) fragment).setData((int) proximitySensorValue, (int) lightSensorValue);
+//        }
     }
 
-    public void setFragmentRefreshListener(FragmentRefreshListener fragmentRefreshListener) {
-        this.fragmentRefreshListener = fragmentRefreshListener;
-    }
-
-    public FragmentRefreshListener getFragmentRefreshListener() {
-        return fragmentRefreshListener;
-    }
-
-    private void refreshFragment() {
-        if (getFragmentRefreshListener() != null) {
-            getFragmentRefreshListener().refresh();
+    private boolean enoughDelay() {
+        long curTime = System.currentTimeMillis();
+        long diffTime = (curTime - lastUpdate);
+        if (diffTime > delay) {
+            lastUpdate = curTime;
+            return true;
         }
+        return false;
     }
 }

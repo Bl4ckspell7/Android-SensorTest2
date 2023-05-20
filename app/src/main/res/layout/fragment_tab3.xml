@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Tab3Fragment">
+    tools:context=".SensorTab3Fragment">
 
     <TextView
         android:id="@+id/tab3_textview_proximity_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="104dp"
-        android:text="@string/proximity_description"
+        android:text="@string/proximity_text"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="@string/brightness_description"
+        android:text="@string/brightness_text"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,12 +62,12 @@
 
     <Button
         android:id="@+id/button_vibrate"
-        android:layout_width="267dp"
-        android:layout_height="61dp"
+        android:layout_width="277dp"
+        android:layout_height="54dp"
         android:text="@string/vibrate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.864" />
+        app:layout_constraintVertical_bias="0.881" />
 </androidx.constraintlayout.widget.ConstraintLayout>
