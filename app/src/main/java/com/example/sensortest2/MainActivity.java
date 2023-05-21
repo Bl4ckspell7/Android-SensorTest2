@@ -27,20 +27,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     ActivityMainBinding binding;
     VibratorManager vibratorManager;
     Vibrator vibrator;
-    private final static int VIBRATION_DURATION = 120;
+    private static final int VIBRATION_DURATION = 120;
     private static final int ONEEIGHTY = 180;
     private final float[] accelerometerReading = new float[3];
     private final float[] magnetometerReading = new float[3];
     private final float[] rotationMatrix = new float[9];
     private final float[] orientationAngles = new float[3];
+    private final int[] sensorData = new int[5];
     private double proximitySensorValue;
     private float lightSensorValue;
-    private final int[] sensorData = new int[5];
 
     FragmentManager fragmentManager;
-    private final Fragment tab1Fragment = new SensorTabFragment1();
-    private final Fragment tab2Fragment = new SensorTabFragment2();
-    private final Fragment tab3Fragment = new SensorTabFragment3();
+    private Fragment tab1Fragment;
+    private Fragment tab2Fragment;
+    private Fragment tab3Fragment;
 
 
     @Override
@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        tab1Fragment = new SensorTabFragment1();
+        tab2Fragment = new SensorTabFragment2();
+        tab3Fragment = new SensorTabFragment3();
         fragmentManager = getSupportFragmentManager();
         replaceFragment(tab1Fragment);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
