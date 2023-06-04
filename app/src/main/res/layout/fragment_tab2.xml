@@ -6,85 +6,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".SensorTabFragment2">
+    tools:context=".Tab2">
 
     <TextView
         android:id="@+id/tab2_textview_vertical_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="166dp"
+        android:layout_marginStart="10dp"
         android:text="@string/textViewDefault"
         android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="@+id/tab2_imageview_vertical_background"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/tab2_imageview_vertical_background"
+        app:layout_constraintStart_toEndOf="@+id/tab2_imageview_vertical_background"
+        app:layout_constraintTop_toTopOf="@+id/tab2_imageview_vertical_background" />
 
     <TextView
         android:id="@+id/tab2_textview_horizontal_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:text="@string/textViewDefault"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tab2_imageview_horizontal_background"
+        app:layout_constraintStart_toStartOf="@+id/tab2_imageview_horizontal_background"
         app:layout_constraintTop_toBottomOf="@+id/tab2_imageview_horizontal_background" />
 
     <ImageView
         android:id="@+id/tab2_imageview_horizontal_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/horizontal_background_content_description"
         android:src="@drawable/linear_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/tab2_imageview_circle_background"
+        app:layout_constraintTop_toBottomOf="@+id/tab2_imageview_circle_background" />
 
     <ImageView
         android:id="@+id/tab2_imageview_vertical_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="166dp"
+        android:layout_marginStart="10dp"
         android:contentDescription="@string/vertical_background_content_description"
-        android:rotation="90"
-        android:src="@drawable/linear_background"
-        app:layout_constraintStart_toStartOf="@+id/tab2_imageview_horizontal_background"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:rotation="0"
+        android:src="@drawable/linear_background__vertical"
+        app:layout_constraintStart_toEndOf="@+id/tab2_imageview_circle_background"
+        app:layout_constraintTop_toTopOf="@+id/tab2_imageview_circle_background" />
 
     <ImageView
         android:id="@+id/tab2_imageview_horizontal_dot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/horizontal_dot_content_description"
         android:src="@drawable/moving_dot"
         app:layout_constraintStart_toStartOf="@+id/tab2_imageview_horizontal_background"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/horizontal_dot_content_description" />
+        app:layout_constraintTop_toTopOf="@+id/tab2_imageview_horizontal_background" />
 
     <ImageView
         android:id="@+id/tab2_imageview_vertical_dot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="37dp"
+        android:contentDescription="@string/vertical_dot_content_description"
         android:src="@drawable/moving_dot"
         app:layout_constraintStart_toStartOf="@+id/tab2_imageview_vertical_background"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/vertical_dot_content_description" />
+        app:layout_constraintTop_toTopOf="@+id/tab2_imageview_vertical_background" />
 
     <ImageView
         android:id="@+id/tab2_imageview_circle_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="133dp"
+        android:contentDescription="@string/circle_background_content_description"
         android:src="@drawable/circle_background"
-        app:layout_constraintStart_toStartOf="@+id/tab2_imageview_horizontal_background"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/circle_background_content_description" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/tab2_imageview_circle_dot"

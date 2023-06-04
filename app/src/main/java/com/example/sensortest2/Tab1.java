@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SensorTabFragment1 extends SensorTabFragment {
+public class Tab1 extends SensorTabFragment {
     private static final int ORIENTATION_VALUE_INDEX = 0;
     private ImageView imageView;
     private TextView textView;
 
-    public SensorTabFragment1() {
+    public Tab1() {
         // Required empty public constructor
     }
 
