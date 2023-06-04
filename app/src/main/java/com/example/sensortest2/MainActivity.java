@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     ActivityMainBinding binding;
     VibratorManager vibratorManager;
     Vibrator vibrator;
-    private static final int VIBRATION_DURATION = 120;
     private static final int ONEEIGHTY = 180;
     private final float[] accelerometerReading = new float[3];
     private final float[] magnetometerReading = new float[3];
@@ -48,9 +47,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        tab1Fragment = new SensorTabFragment1();
-        tab2Fragment = new SensorTabFragment2();
-        tab3Fragment = new SensorTabFragment3();
+        tab1Fragment = new Tab1();
+        tab2Fragment = new Tab2();
+        tab3Fragment = new Tab3();
         fragmentManager = getSupportFragmentManager();
         replaceFragment(tab1Fragment);
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -84,8 +83,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-    public void vibrate() {
-        vibrator.vibrate(VibrationEffect.createOneShot(VIBRATION_DURATION, VibrationEffect.DEFAULT_AMPLITUDE));
+    public void vibrate(int duration) {
+        vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE));
     }
 
     @Override

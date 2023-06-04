@@ -8,15 +8,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SensorTabFragment2 extends SensorTabFragment {
+public class Tab2 extends SensorTabFragment {
     private static final int VERTICAL_VALUE_INDEX = 1;
     private static final int HORIZONTAL_VALUE_INDEX = 2;
+    private static final int MOVING_DOT_CONSTRAINT_OFFSET = 37;
+    private static final int MAX_MARGIN_AMPLITUDE = 34;
     private TextView textViewHorizontalValue;
     private TextView textViewVerticalValue;
     private ImageView imageViewHorizontalDot;
     private ImageView imageViewVerticalDot;
 
-    public SensorTabFragment2() {
+    public Tab2() {
         // Required empty public constructor
     }
 
@@ -78,17 +80,21 @@ public class SensorTabFragment2 extends SensorTabFragment {
 
     private void moveDots(int vertical, int horizontal) {
         // calculate values in range [-1,1]
-        double doubleVal1 = vertical / 90.0;
-        double doubleVal2 = horizontal / 90.0;
+        double verticalDouble = vertical / 90.0;
+        double horizontalDouble = horizontal / 90.0;
 
-        int leftMargin = (int) (-doubleVal2 * convertDpToPx(34)) + convertDpToPx(37);
-        final ViewGroup.MarginLayoutParams layoutParams_w = (ViewGroup.MarginLayoutParams) imageViewHorizontalDot.getLayoutParams();
-        layoutParams_w.setMarginStart(leftMargin);
-        imageViewHorizontalDot.setLayoutParams(layoutParams_w);
+        int leftMargin = calculateMargin(-horizontalDouble);
+        final ViewGroup.MarginLayoutParams layoutParamsHorizontal = (ViewGroup.MarginLayoutParams) imageViewHorizontalDot.getLayoutParams();
+        layoutParamsHorizontal.setMarginStart(leftMargin);
+        imageViewHorizontalDot.setLayoutParams(layoutParamsHorizontal);
 
-        int topMargin = (int) (doubleVal1 * convertDpToPx(34)) + convertDpToPx(170);
-        final ViewGroup.MarginLayoutParams layoutParams_s = (ViewGroup.MarginLayoutParams) imageViewVerticalDot.getLayoutParams();
-        layoutParams_s.setMargins(convertDpToPx(37), topMargin, 0, 0);
-        imageViewVerticalDot.setLayoutParams(layoutParams_s);
+        int topMargin = calculateMargin(verticalDouble);
+        final ViewGroup.MarginLayoutParams layoutParamsVertical = (ViewGroup.MarginLayoutParams) imageViewVerticalDot.getLayoutParams();
+        layoutParamsVertical.setMargins(0, topMargin, 0, 0);
+        imageViewVerticalDot.setLayoutParams(layoutParamsVertical);
+    }
+
+    private int calculateMargin(double input) {
+        return (int) (input * convertDpToPx(MAX_MARGIN_AMPLITUDE)) + convertDpToPx(MOVING_DOT_CONSTRAINT_OFFSET);
     }
 }
