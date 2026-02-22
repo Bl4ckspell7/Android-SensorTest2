@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.example.sensortest2'
-    compileSdk 33
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.example.sensortest2"
